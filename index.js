@@ -21,8 +21,8 @@ const client = new MongoClient(uri, {
 });
 async function run() {
     try {
-        await client.connect();
-        await client.db("admin").command({ ping: 1 });
+        // await client.connect();
+        // await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
         const teamMembersCollections = client.db("residential").collection("teamMembers")
@@ -32,23 +32,21 @@ async function run() {
 
         app.get("/FeaturedProperties", async (req, res) => {
             const FeaturedProperties = await featuredPropertiesCollections.find().toArray();
-            res.send(FeaturedProperties)
+            res.send(FeaturedProperties) 
         })
         app.get("/TeamMembers", async (req, res) => {
             const TeamMembers = await teamMembersCollections.find().toArray();
-            res.send(TeamMembers)
+            res.send(TeamMembers) 
         })
         app.get("/Blogs", async (req, res) => {
             const Blogs = await blogsCollections.find().toArray();
-            res.send(Blogs)
+            res.send(Blogs) 
         })
 
 
-
-
-
-
-    } finally { }
+    } finally { 
+        //console.log()
+    }
 }
 run().catch(console.dir);
 
